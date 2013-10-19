@@ -1,7 +1,5 @@
 # gnuplot.vim
 
----
-
 ### Current state
 
 The plugin is usable but under heavy development
