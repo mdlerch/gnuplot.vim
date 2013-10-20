@@ -9,11 +9,17 @@ function! PreviewPlot()
 	let l:pos = line2byte(l:curL)
 	let l:setT = search("^set terminal", "w")
 	if l:setT != 0
-		s/^/#/
+		let l:curTerm = getline(".")
+		s/^.*$/set terminal wxt/
 		ScreenSend
-		s/^#//
+		let cmd = "s/^.*$/" . l:curTerm . "/"
+		exe cmd
+		noh
 	else
+		goto 1
+		s/^/set terminal wxt;/
 		ScreenSend
+		s/^set terminal wxt;//
 	endif
 	let cmd = "goto " . l:pos
 	exe cmd
