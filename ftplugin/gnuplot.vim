@@ -1,10 +1,22 @@
 let maplocalleader = ","
 
-map <buffer><localleader>gp <ESC>:w<CR>:!gnuplot % <CR>
-map <buffer><localleader>gs <ESC>:ScreenShell gnuplot <CR>
-map <buffer><localleader>pp <ESC>:call PreviewPlot() <CR>
+" map <buffer><localleader>gp <ESC>:w<CR>:!gnuplot % <CR>
+function! GnuplotBuild()
+	:w
+	:!gnuplot %
+endfunction
+command! -nargs=0 GnuplotBuild call GnuplotBuild()
 
-function! PreviewPlot()
+function! GnuplotStart()
+	if !exists(":ScreenShell")
+		echom "Please install the screen plugin"
+	else
+		:ScreenShell gnuplot
+	endif
+endfunction
+command! -nargs=0 GnuplotStart call GnuplotStart()
+
+function! GnuplotPreview()
 	let l:curL = line(".")
 	let l:pos = line2byte(l:curL)
 	let l:setT = search("^set terminal", "w")
@@ -24,4 +36,5 @@ function! PreviewPlot()
 	let cmd = "goto " . l:pos
 	exe cmd
 endfunction
+command! -nargs=0 GnuplotPreview call GnuplotPreview()
 
