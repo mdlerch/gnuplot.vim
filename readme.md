@@ -13,3 +13,4 @@ The plugin is usable but under heavy development
 1. Send script to gnuplot
 
 2. Send script to shell session (running gnuplot) to preview the plot
+
