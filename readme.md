@@ -1,6 +1,6 @@
 # gnuplot.vim
 
-### Current state
+### Current state of the plugin.
 
 The plugin is usable but under heavy development
 
